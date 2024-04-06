@@ -1,9 +1,9 @@
 
-.active {
+.activeBtn {
     background-color: hsl(200, 100%, 70%) !important;
 }
 
-.inactive {
+.inactiveBtn {
     opacity: .3;
 }
 

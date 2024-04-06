@@ -2,10 +2,10 @@
 type wordProps = {
   hangWords: string;
   guessedLetter: string[];
+  revealWord: boolean;
 };
 
-const HangmanWords = ( { hangWords, guessedLetter }: wordProps ) => {
-
+const HangmanWords = ({ hangWords, guessedLetter, revealWord=false }: wordProps) => {
   const guessedLetters: string[] = guessedLetter;
 
   return (
@@ -18,8 +18,10 @@ const HangmanWords = ( { hangWords, guessedLetter }: wordProps ) => {
           >
             <div
               className={`${
-                guessedLetters.includes(letter) ? "visible" : "hidden"
-              }`}
+                guessedLetters.includes(letter) || revealWord ? "visible" : "hidden"
+              }
+              text-${!guessedLetter.includes(letter) && revealWord ? "red-700" : ""}
+              `}
             >
               {letter}
             </div>

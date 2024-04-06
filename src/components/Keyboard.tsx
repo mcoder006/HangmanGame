@@ -29,12 +29,34 @@ let keyboardWords: string[] = [
   "z",
 ];
 
-const Keyboard = () => {
+type KeyboardProps = {
+  activeLetter: string[];
+  inactivateLetter: string[];
+  addGuessedLetter: (letter: string) => void;
+  disabledBtn: boolean;
+};
+
+const Keyboard = ( {  activeLetter, inactivateLetter, disabledBtn, addGuessedLetter }: KeyboardProps) => {
   return (
-    <div className="flex flex-wrap justify-center gap-2 pt-14 max-w-[700px]">
+    <div className="flex flex-wrap justify-center gap-2 pt-14 max-w-[500px] pb-40 md:pb-10">
       {
         keyboardWords.map((word, index) => {
-          return <button key={index} className={`btn active p-2 px-3 uppercase bg-gray-500 rounded btn hover:bg-[hsl(200, 100%, 75%)]`}>{word}</button>
+          const isActive = activeLetter.includes(word);
+          const inActive = inactivateLetter.includes(word);
+
+          return (
+            <button
+              onClick={() => addGuessedLetter(word)}
+              key={index}
+              disabled={inActive || isActive || disabledBtn}
+              className={`btn active p-2 px-3 uppercase bg-gray-500 rounded btn hover:bg-[hsl(200, 100%, 75%)]
+              ${isActive ? "activeBtn" : ""}
+              ${inActive ? "inactiveBtn" : ""}
+          `}
+            >
+              {word}
+            </button>
+          );
         })
       }
     </div>
