@@ -6,9 +6,12 @@ import { useEffect, useState, useCallback } from "react";
 import words from "./wordList.json";
 
 const App = () => {
-   const [wordGuess, setWordGuess] = useState(() => {
+  
+   const getWord = () => {
      return words[Math.floor(Math.random() * words.length)];
-   });
+   };
+   
+   const [wordGuess] = useState(getWord());
 
    const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 

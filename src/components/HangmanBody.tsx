@@ -1,4 +1,3 @@
-import { JSXElementConstructor } from "react";
 
 const Head = () => {
   return (
